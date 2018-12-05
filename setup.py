@@ -20,6 +20,8 @@ hwe = cythonize([
 
 setup(name='snphwe',
     description='fast hardy weinberg test',
+    long_description=io.open('README.md', encoding='utf-8').read(),
+    long_description_content_type='text/markdown',
     author='Jeremy McRae (original code by Jan Wiggington)',
     author_email='jmcrae@illumina.com',
     version='1.0.0',
