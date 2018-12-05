@@ -35,4 +35,5 @@ setup(name='snphwe',
         'Topic :: Scientific/Engineering :: Bio-Informatics',
         'License :: OSI Approved :: MIT License',
     ],
-    ext_modules=hwe)
+    ext_modules=hwe,
+    test_suite='tests')
