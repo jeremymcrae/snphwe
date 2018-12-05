@@ -11,16 +11,16 @@
 
 #include "snp_hwe.h"
 
-double SNPHWE(int obs_hets, int obs_hom1, int obs_hom2) {
+double SNPHWE(long obs_hets, long obs_hom1, long obs_hom2) {
     if (obs_hom1 < 0 || obs_hom2 < 0 || obs_hets < 0) {
         return -1.0;
     }
 
-    int obs_homr = std::min(obs_hom1, obs_hom2);
-    int obs_homc = std::max(obs_hom1, obs_hom2);
+    long obs_homr = std::min(obs_hom1, obs_hom2);
+    long obs_homc = std::max(obs_hom1, obs_hom2);
 
-    int rare = 2 * obs_homr + obs_hets;
-    int genotypes = obs_hets + obs_homc + obs_homr;
+    long rare = 2 * obs_homr + obs_hets;
+    long genotypes = obs_hets + obs_homc + obs_homr;
 
     if (genotypes == 0) {
         return -1.0;
@@ -30,7 +30,7 @@ double SNPHWE(int obs_hets, int obs_hom1, int obs_hom2) {
 
     // get distribution midpoint, but ensure midpoint and rare alleles have
     // same parity
-    int mid = rare * (2 * genotypes - rare) / (2 * genotypes);
+    long mid = rare * (2 * genotypes - rare) / (2 * genotypes);
     if (mid % 2 != rare % 2) {
         mid += 1;
     }
@@ -38,8 +38,8 @@ double SNPHWE(int obs_hets, int obs_hom1, int obs_hom2) {
     probs[mid] = 1.0;
     double sum = probs[mid];
     
-    int curr_homr = (rare - mid) / 2;
-    int curr_homc = genotypes - mid - curr_homr;
+    long curr_homr = (rare - mid) / 2;
+    long curr_homc = genotypes - mid - curr_homr;
     for (auto curr_hets = mid; curr_hets > 1; curr_hets -= 2) {
         probs[curr_hets - 2] = probs[curr_hets] * curr_hets * (curr_hets - 1.0)
                                / (4.0 * (curr_homr + 1.0) * (curr_homc + 1.0));
