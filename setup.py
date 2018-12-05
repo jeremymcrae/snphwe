@@ -14,7 +14,9 @@ if sys.platform == 'darwin':
 hwe = cythonize([
     Extension('snphwe.hwe_test',
         extra_compile_args=EXTRA_COMPILE_ARGS,
-        sources=['snphwe/hwe.pyx'],
+        sources=['snphwe/hwe.pyx',
+            'src/snp_hwe.cpp'],
+        include_dirs=['src/'],
         language='c++'),
     ])
 

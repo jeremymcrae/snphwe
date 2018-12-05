@@ -1,5 +1,3 @@
-# distutils: sources = src/snp_hwe.cpp
-# distutils: include_dirs = src/
 
 cdef extern from "snp_hwe.h":
     double SNPHWE(long, long, long)
