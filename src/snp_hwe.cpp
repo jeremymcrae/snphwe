@@ -8,12 +8,13 @@
 
 #include <vector>
 #include <algorithm>
+#include <stdexcept>
 
 #include "snp_hwe.h"
 
 double SNPHWE(long obs_hets, long obs_hom1, long obs_hom2) {
     if (obs_hom1 < 0 || obs_hom2 < 0 || obs_hets < 0) {
-        return -1.0;
+        throw std::invalid_argument("snphwe: negative allele count");
     }
 
     long obs_homr = std::min(obs_hom1, obs_hom2);
@@ -23,7 +24,7 @@ double SNPHWE(long obs_hets, long obs_hom1, long obs_hom2) {
     long genotypes = obs_hets + obs_homc + obs_homr;
 
     if (genotypes == 0) {
-        return -1.0;
+        throw std::invalid_argument("snphwe: zero genotypes");
     }
 
     std::vector<double> probs(rare + 1, 0.0);
