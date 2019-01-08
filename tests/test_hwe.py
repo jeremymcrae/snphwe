@@ -13,9 +13,11 @@ class TestHWE(unittest.TestCase):
     def test_snphwe_odd_inputs(self):
         ''' check snphwe with odd inputs
         '''
-        # should return -1 with odd inputs
-        self.assertEqual(snphwe(0, 0, 0), -1.0)
-        self.assertEqual(snphwe(-5, 10, 1000), -1.0)
+        # should raise errors with odd inputs
+        with self.assertRaises(ValueError):
+            snphwe(0, 0, 0)
+        with self.assertRaises(ValueError):
+            snphwe(-5, 10, 1000)
     
     def test_snphwe_large_input(self):
         ''' check snphwe doesn't give errors with large sample sizes
