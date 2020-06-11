@@ -36,8 +36,7 @@ setup(name='snphwe',
     license='MIT',
     url='https://github.com/jeremymcrae/snphwe',
     packages=['snphwe'],
-    install_requires=['cython >= 0.19.0'
-    ],
+    install_requires=[],
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Topic :: Scientific/Engineering :: Bio-Informatics',
