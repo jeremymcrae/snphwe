@@ -7,13 +7,19 @@ from distutils.core import Extension
 from Cython.Build import cythonize
 
 EXTRA_COMPILE_ARGS = ['-std=c++11']
+EXTRA_LINK_ARGS = []
 
-if sys.platform == 'darwin':
-    EXTRA_COMPILE_ARGS += ['-stdlib=libc++']
+if sys.platform == "darwin":
+    EXTRA_COMPILE_ARGS += ["-stdlib=libc++",
+        "-mmacosx-version-min=10.9",
+        "-I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include",
+        ]
+    EXTRA_LINK_ARGS += ["-stdlib=libc++", "-mmacosx-version-min=10.9"]
 
 hwe = cythonize([
     Extension('snphwe.hwe_test',
         extra_compile_args=EXTRA_COMPILE_ARGS,
+        extra_link_args=EXTRA_LINK_ARGS,
         sources=['snphwe/hwe.pyx',
             'src/snp_hwe.cpp'],
         include_dirs=['src/'],
