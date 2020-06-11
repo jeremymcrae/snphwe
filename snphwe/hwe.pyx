@@ -1,5 +1,5 @@
 
-cdef extern from "snp_hwe.h":
+cdef extern from "snp_hwe.h" namespace 'snphwe':
     double SNPHWE(long, long, long) except +ValueError
 
 def snphwe(obs_hets, obs_hom1, obs_hom2):

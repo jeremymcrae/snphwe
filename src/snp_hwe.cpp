@@ -12,6 +12,8 @@
 
 #include "snp_hwe.h"
 
+namespace snphwe {
+
 double SNPHWE(long obs_hets, long obs_hom1, long obs_hom2) {
     if (obs_hom1 < 0 || obs_hom2 < 0 || obs_hets < 0) {
         throw std::invalid_argument("snphwe: negative allele count");
@@ -75,3 +77,5 @@ double SNPHWE(long obs_hets, long obs_hom1, long obs_hom2) {
 
     return std::min(1.0, p_hwe);
 }
+
+} //namespace
